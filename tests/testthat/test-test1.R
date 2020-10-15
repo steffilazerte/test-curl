@@ -25,9 +25,20 @@ test_that("httr GET https", {
     expect_is("data.frame")
 })
 
-test_that("httr GET https", {
+test_that("httr GET http", {
   expect_silent(r <- httr::GET(url2))
   expect_silent(t <- httr::content(r, "text", encoding = "UTF-8"))
   expect_silent(read.csv(text = t)) %>%
     expect_is("data.frame")
+})
+
+
+test_that("curl https", {
+  expect_silent(r <- curl::curl(url1, open = "r"))
+  expect_silent(readLines(r))
+})
+
+test_that("curl http", {
+  expect_silent(r <- curl::curl(url2, open = "r"))
+  expect_silent(readLines(r))
 })
