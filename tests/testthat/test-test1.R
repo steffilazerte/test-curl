@@ -42,3 +42,23 @@ test_that("curl http", {
   expect_silent(r <- curl::curl(url2, open = "r"))
   expect_silent(readLines(r))
 })
+
+test_that("download.file - auto", {
+  expect_silent(download.file(url2, destfile = "temp.csv"))
+  unlink("temp.csv")
+})
+
+test_that("download.file - auto", {
+  expect_silent(download.file(url2, destfile = "temp.csv"))
+  unlink("temp.csv")
+})
+
+test_that("download.file - wininet", {
+  expect_silent(download.file(url2, destfile = "temp.csv", method = "wininet"))
+  unlink("temp.csv")
+})
+
+test_that("download.file - libcurl", {
+  expect_silent(download.file(url2, destfile = "temp.csv", method = "libcurl"))
+  unlink("temp.csv")
+})
